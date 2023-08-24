@@ -19,9 +19,8 @@ import ListItemText from "@mui/material/ListItemText";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { Button } from "@mui/material";
-import BasicModal from "./modal";
-import BasicModalDialog from "./modal";
+import { useRouter } from "next/router";
+import BasicModalDialog from "../modal";
 
 const drawerWidth = 240;
 
@@ -90,7 +89,8 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ children }, props) {
+  const router = useRouter();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [openmodal, setOpenmodal] = React.useState(false);
@@ -103,11 +103,16 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  const handlecalender = () => {
+    router.push("pages/components/calender");
+  };
+
+  console.log(">>>", children);
   return (
     <>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <AppBar className="head" position="fixed" open={open}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -160,7 +165,7 @@ export default function MiniDrawer() {
                     {index === 0 ? (
                       <DescriptionIcon />
                     ) : index === 1 ? (
-                      <NotificationsIcon />
+                      <NotificationsIcon onClick={handlecalender} />
                     ) : index === 2 ? (
                       <DeleteIcon />
                     ) : (
@@ -173,6 +178,7 @@ export default function MiniDrawer() {
             ))}
           </List>
         </Drawer>
+        <div style={{ marginTop: "75px", marginLeft: "10px" }}>{children}</div>
       </Box>
     </>
   );

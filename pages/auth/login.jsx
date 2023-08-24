@@ -81,7 +81,7 @@ const Login = () => {
             Log In
           </button>
         </div>
-        <div className="signup-link ">
+        <div className="signup-link mt-3">
           <p onClick={handlesignup}>Don't have an account ?</p>
         </div>
       </div>

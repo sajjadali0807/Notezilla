@@ -8,14 +8,13 @@ import Add from "@mui/icons-material/Add";
 import Typography from "@mui/joy/Typography";
 import { TextField } from "@mui/material";
 import { TextFields } from "@mui/icons-material";
+import axios from "axios";
 
 export default function BasicModalDialog() {
   const [open, setOpen] = React.useState(false);
-  const [notes, setNotes] = React.useState();
+  const [notes, setNotes] = React.useState([]);
+  // const [usernotes, setuserNotes] = React.useState([]);
 
-  //   const handlecreate = () => {
-  //     console.log(notes, "Hello sajjad");
-  //   };
   return (
     <React.Fragment>
       <Button
@@ -41,6 +40,10 @@ export default function BasicModalDialog() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
+              // axios.get("http://192.168.2.109:9000/list/content").then((e) => {
+              //   setuserNotes(e.Details);
+              //   console.log(e, "heloooo");
+              // });
               //   setOpen(false);
             }}
           >

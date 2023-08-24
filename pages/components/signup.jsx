@@ -86,7 +86,7 @@ export default function RecipeReviewCard() {
             <div className="signup-btn-wrapper">
               <button className="signup-btn mt-3">Sign Up</button>
             </div>
-            <div className="already-btn-wrapper ">
+            <div className="already-btn-wrapper mt-3">
               <p onClick={handlealreadylogin}>Already Have An Account Login</p>
             </div>
           </div>

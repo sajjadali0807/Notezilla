@@ -30,6 +30,9 @@
 .already-btn-wrapper {
   cursor: pointer;
   display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
 }
 /* Login Page */
 
@@ -76,4 +79,38 @@
 .create-wrapper {
   display: flex;
   justify-content: right;
+}
+.head {
+  background-color: #212529;
+}
+
+.notes-wrapper {
+  display: flex !important;
+  flex-direction: row;
+}
+/* Calender Page */
+
+html {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+.fc-toolbar-title {
+  background-color: #212529;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 5px !important;
+  color: white;
+}
+
+.calendar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.fc-event-time {
+  font-weight: bolder;
 }
