@@ -13,7 +13,14 @@ import axios from "axios";
 export default function BasicModalDialog() {
   const [open, setOpen] = React.useState(false);
   const [notes, setNotes] = React.useState([]);
-  // const [usernotes, setuserNotes] = React.useState([]);
+  const [title, setTitle] = React.useState([]);
+  const [reload, setReload] = React.useState();
+
+  React.useEffect(() => {}, [reload]);
+
+  // useEffect(() => {
+
+  // }, [third])
 
   return (
     <React.Fragment>
@@ -40,18 +47,23 @@ export default function BasicModalDialog() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              // axios.get("http://192.168.2.109:9000/list/content").then((e) => {
-              //   setuserNotes(e.Details);
-              //   console.log(e, "heloooo");
-              // });
-              //   setOpen(false);
+              axios
+                .post("http://192.168.2.109:9000/create/content", {
+                  title: title,
+                  content: notes,
+                })
+                .then((e) => {
+                  console.log(e, "heloooo");
+                  setReload("helooo");
+                });
+              setOpen(false);
             }}
           >
             <Stack spacing={2}>
               <TextField
                 size="lg"
-                value={notes}
-                // onChange={(e) => setNotes(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 color="primary"
                 variant="outlined"
                 placeholder="Title"
@@ -59,7 +71,7 @@ export default function BasicModalDialog() {
               <Textarea
                 color="neutral"
                 value={notes}
-                // onChange={(e) => setNotes(e.target.value)}
+                onChange={(e) => setNotes(e.target.value)}
                 disabled={false}
                 minRows={2}
                 placeholder="Note"

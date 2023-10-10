@@ -94,6 +94,11 @@ export default function MiniDrawer({ children }, props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [openmodal, setOpenmodal] = React.useState(false);
+  const menuItems = [
+    { text: "Notes", icon: <DescriptionIcon />, route: "/main" },
+    { text: "Reminders", icon: <NotificationsIcon />, route: "/reminders" },
+    { text: "Trash", icon: <DeleteIcon />, route: "/trash" },
+  ];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -132,6 +137,9 @@ export default function MiniDrawer({ children }, props) {
             <div className="create-wrapper mx-5">
               <BasicModalDialog />
             </div>
+            <div className="logout">
+              <button>logout</button>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -145,7 +153,7 @@ export default function MiniDrawer({ children }, props) {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List>
+          {/* <List>
             {["Notes", "Reminders", "Trash"].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
@@ -173,6 +181,41 @@ export default function MiniDrawer({ children }, props) {
                     )}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List> */}
+
+          <List>
+            {menuItems.map((item) => (
+              <ListItem
+                key={item.text}
+                disablePadding
+                sx={{ display: "block" }}
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                    backgroundColor:
+                      item.route === "/reminders" ? "#b7b7b7" : "transparent", // Change the background color based on the active route
+                    color: item.route === "/" ? "#fff" : "inherit", // Change the text color based on the active route
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.text}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
                 </ListItemButton>
               </ListItem>
             ))}

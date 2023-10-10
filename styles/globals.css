@@ -74,20 +74,23 @@
 .login-input {
   width: 100%;
 }
+
 /* main page  */
 
-.create-wrapper {
-  display: flex;
-  justify-content: right;
-}
 .head {
   background-color: #212529;
 }
 
 .notes-wrapper {
   display: flex !important;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
+
+.logout {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* Calender Page */
 
 html {
