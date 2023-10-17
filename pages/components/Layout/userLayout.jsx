@@ -21,6 +21,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useRouter } from "next/router";
 import BasicModalDialog from "../modal";
+import icon from "../../../public/dummy.png";
+import Image from "next/image";
 
 const drawerWidth = 240;
 
@@ -131,19 +133,43 @@ export default function MiniDrawer({ children }, props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h4" noWrap component="div">
-              NoteZilla
-            </Typography>
+
             <div className="create-wrapper mx-5">
               <BasicModalDialog />
             </div>
-            <div className="logout">
-              <button>logout</button>
+            <div className="logout-wrapper">
+              <a
+                href="#_"
+                class="relative inline-flex items-center px-12 py-2 overflow-hidden text-lg font-medium text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group hover:bg-gray-50"
+              >
+                <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="relative">Logout</span>
+              </a>
             </div>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
+            <div className="logo">
+              <Image src={icon} alt="imag"></Image>
+              <h3>NoteZilla</h3>
+            </div>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
                 <ChevronRightIcon />
@@ -153,38 +179,6 @@ export default function MiniDrawer({ children }, props) {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          {/* <List>
-            {["Notes", "Reminders", "Trash"].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index === 0 ? (
-                      <DescriptionIcon />
-                    ) : index === 1 ? (
-                      <NotificationsIcon onClick={handlecalender} />
-                    ) : index === 2 ? (
-                      <DeleteIcon />
-                    ) : (
-                      <SettingsIcon />
-                    )}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List> */}
 
           <List>
             {menuItems.map((item) => (
@@ -221,7 +215,7 @@ export default function MiniDrawer({ children }, props) {
             ))}
           </List>
         </Drawer>
-        <div style={{ marginTop: "75px", marginLeft: "10px" }}>{children}</div>
+        <div>{children}</div> // bug founded
       </Box>
     </>
   );

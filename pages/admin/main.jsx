@@ -53,33 +53,52 @@ const Main = () => {
 
       setCardData(data);
       setItems(
-        Array.from({ length: data?.length }, (_, i) => (i + 1).toString())
+        // Array.from({ length: data?.length }, (_, i) => (i + 1).toString())
+        data
       );
     });
   }, []);
   console.log(cardData, "hee");
   console.log(cardData, "original");
+  const bgcolors = [
+    "#ffffff",
+    "#a29bfe",
+    "#ffeaa7",
+    "#55efc4",
+    "#DFCCFB",
+    "#FFE5E5",
+    "#EEE0C9",
+    "#96B6C5",
+    "#FBA1B7",
+    "#98E4FF",
+  ];
+  const generateColor = () => {
+    let index = Math.floor(Math.random() * 10);
+    return bgcolors[index];
+  };
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      onDragCancel={handleDragCancel}
-    >
-      <SortableContext items={items} strategy={rectSortingStrategy}>
-        <Grid columns={3}>
-          {items?.map((id) => (
-            <SortableItem key={id} id={id} />
-          ))}
-        </Grid>
-      </SortableContext>
-      <DragOverlay adjustScale style={{ transformOrigin: "0 0 " }}>
-        {activeId ? (
-          <Item cardData={cardData} id={activeId} isDragging />
-        ) : null}
-      </DragOverlay>
-    </DndContext>
+    <div className="newdiv">
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        onDragCancel={handleDragCancel}
+      >
+        <SortableContext items={items} strategy={rectSortingStrategy}>
+          <Grid columns={4}>
+            {items?.map((id, index) => (
+              <SortableItem key={id} id={id} colour={generateColor()} />
+            ))}
+          </Grid>
+        </SortableContext>
+        <DragOverlay adjustScale style={{ transformOrigin: "0 0 " }}>
+          {activeId ? (
+            <Item cardData={cardData} id={activeId} isDragging />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
+    </div>
   );
 };
 
